@@ -7,8 +7,17 @@ from icalendar import Calendar, JCalParsingError
 from rich.console import Console
 import typer
 
+console = Console()
 err_console = Console(stderr=True)
 ical2jcal = typer.Typer(add_completion=False)
+
+
+def version_callback(value: bool):
+    if value:
+        import ical2jcal
+
+        console.print(f"{ical2jcal.__name__}: {ical2jcal.__version__}")
+        raise typer.Exit()
 
 
 @ical2jcal.command()
@@ -16,6 +25,9 @@ def convert_to_jcal(
     ics_path: Annotated[typer.FileText, typer.Argument(exists=True)],
     jcal_path: Annotated[typer.FileTextWrite, typer.Argument()],
     pretty: Annotated[bool, typer.Option("--pretty", "-p", help="Pretty print json")] = False,
+    version: Annotated[
+        bool | None, typer.Option("--version", callback=version_callback, help="Print version")
+    ] = None,
 ) -> None:
     """Convert an ics file to a jcal file.
 
@@ -44,6 +56,9 @@ jcal2ical = typer.Typer(add_completion=False)
 def convert_to_ical(
     jcal_path: Annotated[typer.FileText, typer.Argument(exists=True)],
     ics_path: Annotated[typer.FileBinaryWrite, typer.Argument()],
+    version: Annotated[
+        bool | None, typer.Option("--version", callback=version_callback, help="Print version")
+    ] = None,
 ) -> None:
     """Convert an jcal file to an ics file.
 

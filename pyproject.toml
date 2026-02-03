@@ -1,6 +1,6 @@
 [project]
 name = "ical2jcal"
-version = "0.0.0"
+dynamic = ["version"]
 description = "Convert between iCalendar and jCalendar formats."
 authors = [
     { name = "Nicco Kunzmann", email = "niccokunzmann@rambler.ru" }]
@@ -72,13 +72,14 @@ licenses = [
 ]
 
 [build-system]
-requires = ["uv_build>=0.9.0,<0.10.0"]
-build-backend = "uv_build"
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
 
-# For non-src directory projects, explicitly set top level model name:
-#[tool.uv.build-backend]
-#module-name = "my-app"
-#module-root = ""
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+fallback-version = "0.0.0"
 
 [tool.uv]
 default-groups = "all"
