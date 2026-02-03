@@ -60,7 +60,7 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/johnthagen/python-blueprint
+      link: https://github.com/niccokunzmann/ical2jcal
 plugins:
   - search
   - offline:
@@ -87,7 +87,7 @@ watch:
 site_name: ical2jcal
 copyright: Copyright &copy; 2018-2026 John Hagen; 2026 Nicco Kunzmann
 # GitHub Specific Configuration.
-repo_name: python-blueprint
+repo_name: ical2jcal
 repo_url: https://github.com/niccokunzmann/ical2jcal
 edit_uri: edit/main/docs/user_guide/docs/
 nav:
