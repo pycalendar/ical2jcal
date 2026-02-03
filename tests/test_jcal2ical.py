@@ -1,4 +1,3 @@
-import json
 
 from icalendar import Calendar
 import pytest

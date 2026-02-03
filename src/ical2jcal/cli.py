@@ -4,9 +4,8 @@ import json
 from typing import Annotated
 
 from icalendar import Calendar, JCalParsingError
+from rich.console import Console
 import typer
-from rich.console import Console
-from rich.console import Console
 
 err_console = Console(stderr=True)
 ical2jcal = typer.Typer(add_completion=False)
