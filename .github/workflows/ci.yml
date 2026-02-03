@@ -78,5 +78,8 @@ jobs:
         with:
           version: ${{ env.UV_VERSION }}
 
+      - name: Build package
+        run: uv build
+
       - name: Publish to PyPI
         run: uv publish
