@@ -78,8 +78,8 @@ def type_check(s: Session) -> None:
 doc_env = {"PYTHONPATH": "src"}
 
 
-@session(venv_backend="none")
-def docs(s: Session) -> None:
+def update_cmd_docs(s: Session) -> None:
+    """Update the documentation from Python docstrings."""
     s.run(
         "typer",
         "--app",
@@ -104,26 +104,35 @@ def docs(s: Session) -> None:
         "--output",
         "docs/jcal2ical.md",
     )
+
+
+@session(venv_backend="none")
+def docs(s: Session) -> None:
+    update_cmd_docs(s)
     s.run("mkdocs", "build", env=doc_env)
 
 
 @session(venv_backend="none")
 def docs_check_urls(s: Session) -> None:
+    update_cmd_docs(s)
     s.run("mkdocs", "build", env=doc_env | {"HTMLPROOFER_VALIDATE_EXTERNAL_URLS": str(True)})
 
 
 @session(venv_backend="none")
 def docs_offline(s: Session) -> None:
+    update_cmd_docs(s)
     s.run("mkdocs", "build", env=doc_env | {"MKDOCS_MATERIAL_OFFLINE": str(True)})
 
 
 @session(venv_backend="none")
 def docs_serve(s: Session) -> None:
+    update_cmd_docs(s)
     s.run("mkdocs", "serve", env=doc_env)
 
 
 @session(venv_backend="none")
 def docs_github_pages(s: Session) -> None:
+    update_cmd_docs(s)
     s.run("mkdocs", "gh-deploy", "--force", env=doc_env)
 
 
