@@ -73,8 +73,8 @@ plugins:
             show_signature_annotations: true
   # Autodoc configuration.
   # https://github.com/tlambert03/mkdocs-api-autonav#configuration
-  - api-autonav:
-      modules: ["src/ical2jcal"]
+  # - api-autonav:
+  #     modules: ["src/ical2jcal"]
   # This plugin is used to validate URLs (including anchors).
   - htmlproofer:
       # This is not enabled by default because this requires network I/O, so it is inherently not
@@ -92,5 +92,8 @@ repo_url: https://github.com/niccokunzmann/ical2jcal
 edit_uri: edit/main/docs/user_guide/docs/
 nav:
   - index.md
+  - Command Line Reference:
+    - ical2jcal.md
+    - jcal2ical.md
   - Third Party Licenses:
     - licenses/license_report.md

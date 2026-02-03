@@ -1,0 +1,18 @@
+[
+  "vcalendar",
+  [
+    [
+      "version",
+      {},
+      "text",
+      "2.0"
+    ],
+    [
+      "prodid",
+      {},
+      "text",
+      "-//niccokunzmann//ical2jcal//EN"
+    ]
+  ],
+  []
+]

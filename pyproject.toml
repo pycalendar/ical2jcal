@@ -61,11 +61,11 @@ lint = [
 docs = [
     "mkdocs-material",
     "mkdocs-htmlproofer-plugin",
-
     # Python API documentation (not neccessary for applications).
     "mkdocstrings[python]",
     # Autodoc.
     "mkdocs-api-autonav",
+    "typer>=0.21.1",
 ]
 licenses = [
     "pip-licenses-cli",

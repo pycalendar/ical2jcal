@@ -76,3 +76,14 @@ def test_error_multiple_calendars(calendars):
     jcal = json.loads(result.stdout)
     expected = calendar.calendar.to_jcal()
     assert jcal == expected
+
+
+def test_default_is_stdin_stdout(calendars):
+    calendar = calendars["example.ics"]
+    runner = CliRunner()
+    result = runner.invoke(ical2jcal, [], input=calendar.path.read_text())
+    assert result.exit_code == 0, result.output
+
+    jcal = json.loads(result.stdout)
+    expected = calendar.calendar.to_jcal()
+    assert jcal == expected

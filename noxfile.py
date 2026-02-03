@@ -80,6 +80,30 @@ doc_env = {"PYTHONPATH": "src"}
 
 @session(venv_backend="none")
 def docs(s: Session) -> None:
+    s.run(
+        "typer",
+        "--app",
+        "ical2jcal",
+        "ical2jcal.cli",
+        "utils",
+        "docs",
+        "--name",
+        "ical2jcal",
+        "--output",
+        "docs/ical2jcal.md",
+    )
+    s.run(
+        "typer",
+        "--app",
+        "jcal2ical",
+        "ical2jcal.cli",
+        "utils",
+        "docs",
+        "--name",
+        "jcal2ical",
+        "--output",
+        "docs/jcal2ical.md",
+    )
     s.run("mkdocs", "build", env=doc_env)
 
 

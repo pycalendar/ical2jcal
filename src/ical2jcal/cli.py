@@ -22,18 +22,48 @@ def version_callback(value: bool):
 
 @ical2jcal.command()
 def convert_to_jcal(
-    ics_path: Annotated[typer.FileText, typer.Argument(exists=True)],
-    jcal_path: Annotated[typer.FileTextWrite, typer.Argument()],
+    ics_path: Annotated[
+        typer.FileText, typer.Argument(exists=True, help="Input iCalendar file or - for stdin")
+    ] = "-",
+    jcal_path: Annotated[
+        typer.FileTextWrite, typer.Argument(help="Output jCalendar file or - for stdout")
+    ] = "-",
     pretty: Annotated[bool, typer.Option("--pretty", "-p", help="Pretty print json")] = False,
     version: Annotated[
-        bool | None, typer.Option("--version", callback=version_callback, help="Print version")
+        bool | None,
+        typer.Option("--version", callback=version_callback, help="Print version and exit"),
     ] = None,
 ) -> None:
-    """Convert an ics file to a jcal file.
+    """Convert an ics file [RFC 5545] to jCalendar [RFC 7265].
 
-    Convert a file from the RFC 5545 iCalendar format to the RFC 7265 jCalendar format.
+    If the file contains multiple calendars, only the first one is converted.
 
-    The file is expected to contain a single calendar.
+    | Error Code | Description                                      |
+    | ---------- | -----------                                      |
+    |          1 | The input file is not a valid RFC 5545 iCalendar |
+    |          2 | The input file does not exist                    |
+
+    Examples
+    --------
+
+    Convert an ics file to a jcal file:
+
+        $ ical2jcal example.ics example.jcal
+
+    Convert stdin to stdout with an invalid calendar:
+
+        $ echo ... | ical2jcal - -
+        The input file is not a valid RFC 5545 iCalendar.
+
+    Print the jcal version of an ics file:
+
+        $ ical2jcal example.ics --pretty
+        [
+            ...
+        ]
+
+    [RFC 5545]: https://datatracker.ietf.org/doc/html/rfc5545
+    [RFC 7265]: https://datatracker.ietf.org/doc/html/rfc7265
     """
     try:
         calendars = Calendar.from_ical(ics_path.read(), multiple=True)
@@ -54,15 +84,47 @@ jcal2ical = typer.Typer(add_completion=False)
 
 @jcal2ical.command()
 def convert_to_ical(
-    jcal_path: Annotated[typer.FileText, typer.Argument(exists=True)],
-    ics_path: Annotated[typer.FileBinaryWrite, typer.Argument()],
+    jcal_path: Annotated[
+        typer.FileText, typer.Argument(exists=True, help="Input jCalendar file or - for stdin")
+    ] = "-",
+    ics_path: Annotated[
+        typer.FileBinaryWrite,
+        typer.Argument(help="Output iCalendar file or - for stdout (default)"),
+    ] = "-",
     version: Annotated[
-        bool | None, typer.Option("--version", callback=version_callback, help="Print version")
+        bool | None,
+        typer.Option("--version", callback=version_callback, help="Print version and exit"),
     ] = None,
 ) -> None:
-    """Convert an jcal file to an ics file.
+    """Convert a jCalendar file [RFC 7265] to ics [RFC 5545].
 
-    Convert a file from the RFC 7265 jCalendar format to the RFC 5545 iCalendar format.
+    | Error Code | Description                                      |
+    | ---------- | -----------                                      |
+    |          1 | The input file is not a valid RFC 7265 jCalendar |
+    |          2 | The input file does not exist                    |
+
+    Examples
+    --------
+
+    Convert a jcal file to an ics file:
+
+        $ jcal2ical example.jcal example.ics
+
+    Convert stdin to stdout with an invalid calendar:
+
+        $ echo ... | jcal2ical
+        The input file is not a valid RFC 7265 jCalendar.
+
+    Print the ics version of an jcal file:
+
+        $ jcal2ical example.jcal
+        BEGIN:VCALENDAR
+        VERSION:2.0
+        PRODID:-//niccokunzmann//ical2jcal//EN
+        END:VCALENDAR
+
+    [RFC 5545]: https://datatracker.ietf.org/doc/html/rfc5545
+    [RFC 7265]: https://datatracker.ietf.org/doc/html/rfc7265
     """
     try:
         calendar = Calendar.from_jcal(jcal_path.read())

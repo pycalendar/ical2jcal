@@ -35,3 +35,13 @@ def test_error_jcal_information_problem_given(tmp_path):
     result = runner.invoke(jcal2ical, [str(invalid_calendar), "-"])
     assert result.exit_code == 1, result.output
     assert "in Calendar: A component must be a list with 3 items. Got value: []" in result.stderr
+
+
+def test_default_is_stdin_stdout(calendars):
+    calendar = calendars["rfc_7265_appendix_example_1_jcal.jcal"]
+    runner = CliRunner()
+    result = runner.invoke(jcal2ical, [], input=calendar.path.read_text())
+    assert result.exit_code == 0, result.output
+
+    ics = result.stdout
+    assert Calendar.from_ical(ics) == calendar.calendar
