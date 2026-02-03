@@ -134,10 +134,14 @@ Given you have a calendar file as a valid jCalendar, you can use different tools
 
     Output:
 
-    ```text
-    Start Date:         2026-02-03T21:10:54+00:00
-    End Date:           2026-02-03T23:59:59+00:00
-    Number of Events:   0
+    ```json
+    {
+      "filter": {
+        "start-date": "2026-02-03T00:00:00+00:00",
+        "end-date": "2026-02-03T23:59:59+00:00"
+      },
+      "events": []
+    }
     ```
 
 [^1]: [curl website](https://curl.se/)
