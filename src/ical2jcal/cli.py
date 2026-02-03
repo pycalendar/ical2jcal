@@ -23,3 +23,16 @@ def convert_to_jcal(
     else:
         jcal_path.write(calendar.to_json())
 
+
+jcal2ical = typer.Typer(add_completion=False)
+
+
+@jcal2ical.command()
+def convert_to_ical(
+        jcal_path:Annotated[typer.FileText, typer.Argument(exists=True)],
+        ics_path: Annotated[typer.FileBinaryWrite, typer.Argument()],
+    ) -> None:
+    """Convert an jcal file to an ics file."""
+    calendar = Calendar.from_jcal(jcal_path.read())
+    ics_path.write(calendar.to_ical())
+
