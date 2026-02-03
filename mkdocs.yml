@@ -15,10 +15,10 @@ theme:
     primary: green
     accent: yellow
   icon:
-    logo: material/math-integral-box
+    logo: material/calendar-expand-horizontal
     # GitHub specific.
     repo: fontawesome/brands/github
-  favicon: static/math-integral-box.png
+  favicon: static/calendar-expand-horizontal.svg
   features:
     - content.code.annotate
     - content.code.copy
@@ -92,10 +92,13 @@ repo_url: https://github.com/niccokunzmann/ical2jcal
 edit_uri: edit/main/docs/user_guide/docs/
 nav:
   - index.md
+  - advanced.md
   - Command Line:
     - ical2jcal.md
     - jcal2ical.md
   - compatibility.md
+  - Contributing:
+    - development.md
   - Licensing:
     - licenses/license.md
     - licenses/license_report.md
