@@ -1,14 +1,14 @@
 [project]
-name = "fact"
-version = "1.0.0"
-description = "Example Python project using best practices"
+name = "ical2jcal"
+version = "0.0.0"
+description = "Convert between iCalendar and jCalendar formats."
 authors = [
-    { name = "John Hagen", email = "johnthagen@users.noreply.github.com" }]
-license = "MIT"
+    { name = "Nicco Kunzmann", email = "niccokunzmann@rambler.ru" }]
+license = "GPL-3.0-or-later"
 license-files = ["LICENSE*"]
 readme = "README.md"
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
@@ -20,23 +20,27 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Free Threading :: 3 - Stable",
     "Typing :: Typed",
-    # Include this classifier to prevent accidentally publishing private code to PyPI.
-    #   https://pypi.org/classifiers/
-    "Private :: Do Not Upload",
+    "Topic :: File Formats :: JSON",
+    "Topic :: File Formats",
+    "Topic :: Communications",
+    "Topic :: Utilities",
+    # https://pypi.org/classifiers/
 ]
 requires-python = ">=3.10"
 dependencies = [
     "rich",
-    "typer-slim[standard]"
+    "typer-slim[standard]",
+    "icalendar>=7.0.0a2",
 ]
 
 [project.urls]
-Homepage = "https://github.com/johnthagen/python-blueprint"
-Documentation = "https://johnthagen.github.io/python-blueprint/"
-Repository = "https://github.com/johnthagen/python-blueprint"
+Homepage = "https://github.com/niccokunzmann/ical2jcal/"
+Documentation = "https://github.com/niccokunzmann/ical2jcal/"
+Repository = "https://github.com/niccokunzmann/ical2jcal/"
 
 [project.scripts]
-fact = "fact.cli:app"
+ical2jcal = "ical2jcal.cli:ical2jcal"
+jcal2ical = "ical2jcal.cli:jcal2ical"
 
 [dependency-groups]
 nox = [
