@@ -1,6 +1,7 @@
-from ical2jcal import cli, __version__
 import pytest
 from typer.testing import CliRunner
+
+from ical2jcal import __version__, cli
 
 
 @pytest.mark.parametrize("endpoint", [cli.ical2jcal, cli.jcal2ical])
