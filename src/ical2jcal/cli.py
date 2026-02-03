@@ -76,6 +76,7 @@ def convert_to_jcal(
             ...
         ]
 
+    [Project Website]: https://niccokunzmann.github.io/ical2jcal
     [RFC 5545]: https://datatracker.ietf.org/doc/html/rfc5545
     [RFC 7265]: https://datatracker.ietf.org/doc/html/rfc7265
     """
@@ -137,6 +138,7 @@ def convert_to_ical(
         PRODID:-//niccokunzmann//ical2jcal//EN
         END:VCALENDAR
 
+    [Project Website]: https://niccokunzmann.github.io/ical2jcal
     [RFC 5545]: https://datatracker.ietf.org/doc/html/rfc5545
     [RFC 7265]: https://datatracker.ietf.org/doc/html/rfc7265
     """
