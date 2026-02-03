@@ -65,6 +65,9 @@ jobs:
     runs-on: ubuntu-24.04
     environment:
       name: PyPI
+      # see https://docs.pypi.org/trusted-publishers/using-a-publisher/
+    permissions:
+      id-token: write
     needs:
       - quality
       - test
