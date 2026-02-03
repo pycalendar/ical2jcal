@@ -16,7 +16,7 @@ def calendars() -> dict[str, TestFile]:
     result = {}
     for path in CALENDARS.iterdir():
         if path.name.endswith(".ics"):
-            calendar = Calendar.from_ical(path.read_text())
+            calendar = Calendar.from_ical(path.read_text(), multiple=True)[0]
         else:
             calendar = Calendar.from_jcal(path.read_text())
         result[path.name] = TestFile(path, calendar)

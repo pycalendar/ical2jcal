@@ -1,5 +1,6 @@
 import json
 
+import pytest
 from typer.testing import CliRunner
 
 from ical2jcal.cli import ical2jcal
@@ -51,3 +52,26 @@ def test_pretty_option(calendars):
     expected = calendar.calendar.to_jcal()
     assert jcal == expected
     assert result.output.startswith("[\n  ")
+
+
+@pytest.mark.parametrize("content", ["", "Not a calendar"])
+def test_error_input_is_not_a_calendar(tmp_path, content):
+    """The input is not a calendar."""
+    invalid_calendar = tmp_path / "invalid.ics"
+    invalid_calendar.write_text(content)
+    runner = CliRunner()
+    result = runner.invoke(ical2jcal, [str(invalid_calendar), "-"])
+    assert result.exit_code == 1, result.output
+    assert "The input file is not a valid RFC 5545 iCalendar." in result.output
+
+
+def test_error_multiple_calendars(calendars):
+    """Multiple calendars exist."""
+    calendar = calendars["stream.ics"]
+    runner = CliRunner()
+    result = runner.invoke(ical2jcal, [str(calendar.path), "-"])
+    assert result.exit_code == 0, result.output
+
+    jcal = json.loads(result.stdout)
+    expected = calendar.calendar.to_jcal()
+    assert jcal == expected

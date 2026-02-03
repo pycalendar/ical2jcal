@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
+import json
 from typing import Annotated
 
-from icalendar import Calendar
+from icalendar import Calendar, JCalParsingError
 import typer
 from rich.console import Console
+from rich.console import Console
 
+err_console = Console(stderr=True)
 ical2jcal = typer.Typer(add_completion=False)
 
 
@@ -15,8 +18,19 @@ def convert_to_jcal(
         jcal_path: Annotated[typer.FileTextWrite, typer.Argument()],
         pretty: Annotated[bool, typer.Option("--pretty", "-p", help="Pretty print json")] = False
     ) -> None:
-    """Convert an ics file to a jcal file."""
-    calendar = Calendar.from_ical(ics_path.read())
+    """Convert an ics file to a jcal file.
+    
+    Convert a file from the RFC 5545 iCalendar format to the RFC 7265 jCalendar format.
+    
+    The file is expected to contain a single calendar.
+    """
+    try:
+        calendars = Calendar.from_ical(ics_path.read(), multiple=True)
+    except ValueError as e:
+        raise typer.Exit("The input file is not a valid RFC 5545 iCalendar.") from e
+    if len(calendars) == 0:
+        raise typer.Exit("The input file is not a valid RFC 5545 iCalendar.")
+    calendar = calendars[0]
     if pretty:
         console = Console(file=jcal_path)
         console.print_json(calendar.to_json())
@@ -32,7 +46,16 @@ def convert_to_ical(
         jcal_path:Annotated[typer.FileText, typer.Argument(exists=True)],
         ics_path: Annotated[typer.FileBinaryWrite, typer.Argument()],
     ) -> None:
-    """Convert an jcal file to an ics file."""
-    calendar = Calendar.from_jcal(jcal_path.read())
+    """Convert an jcal file to an ics file.
+    
+    Convert a file from the RFC 7265 jCalendar format to the RFC 5545 iCalendar format.
+    """
+    try:
+        calendar = Calendar.from_jcal(jcal_path.read())
+    except json.JSONDecodeError as e:
+        raise typer.Exit("The input file is not a valid RFC 7265 jCalendar.") from e
+    except JCalParsingError as e:
+        err_console.print(e)
+        raise typer.Exit("The input file is not a valid RFC 7265 jCalendar.") from e
     ics_path.write(calendar.to_ical())
 
