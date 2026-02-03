@@ -7,9 +7,11 @@ import pytest
 HERE = Path(__file__).parent
 CALENDARS = HERE / "calendars"
 
+
 class TestFile(NamedTuple):
     path: Path
     calendar: Calendar
+
 
 @pytest.fixture
 def calendars() -> dict[str, TestFile]:
@@ -22,8 +24,7 @@ def calendars() -> dict[str, TestFile]:
         result[path.name] = TestFile(path, calendar)
     return result
 
+
 @pytest.fixture
 def output_file(tmp_path: Path) -> Path:
     return tmp_path / "output"
-
-

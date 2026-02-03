@@ -13,14 +13,14 @@ ical2jcal = typer.Typer(add_completion=False)
 
 @ical2jcal.command()
 def convert_to_jcal(
-        ics_path:Annotated[typer.FileText, typer.Argument(exists=True)],
-        jcal_path: Annotated[typer.FileTextWrite, typer.Argument()],
-        pretty: Annotated[bool, typer.Option("--pretty", "-p", help="Pretty print json")] = False
-    ) -> None:
+    ics_path: Annotated[typer.FileText, typer.Argument(exists=True)],
+    jcal_path: Annotated[typer.FileTextWrite, typer.Argument()],
+    pretty: Annotated[bool, typer.Option("--pretty", "-p", help="Pretty print json")] = False,
+) -> None:
     """Convert an ics file to a jcal file.
-    
+
     Convert a file from the RFC 5545 iCalendar format to the RFC 7265 jCalendar format.
-    
+
     The file is expected to contain a single calendar.
     """
     try:
@@ -42,11 +42,11 @@ jcal2ical = typer.Typer(add_completion=False)
 
 @jcal2ical.command()
 def convert_to_ical(
-        jcal_path:Annotated[typer.FileText, typer.Argument(exists=True)],
-        ics_path: Annotated[typer.FileBinaryWrite, typer.Argument()],
-    ) -> None:
+    jcal_path: Annotated[typer.FileText, typer.Argument(exists=True)],
+    ics_path: Annotated[typer.FileBinaryWrite, typer.Argument()],
+) -> None:
     """Convert an jcal file to an ics file.
-    
+
     Convert a file from the RFC 7265 jCalendar format to the RFC 5545 iCalendar format.
     """
     try:
@@ -57,4 +57,3 @@ def convert_to_ical(
         err_console.print(e)
         raise typer.Exit("The input file is not a valid RFC 7265 jCalendar.") from e
     ics_path.write(calendar.to_ical())
-

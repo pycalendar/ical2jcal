@@ -1,4 +1,3 @@
-
 from icalendar import Calendar
 import pytest
 from typer.testing import CliRunner

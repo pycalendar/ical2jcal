@@ -41,6 +41,7 @@ def test_ical2jcal_single_calendar_stout(calendars) -> None:
     expected = calendar.calendar.to_jcal()
     assert jcal == expected
 
+
 def test_pretty_option(calendars):
     """Test that we can print pretty json."""
     calendar = calendars["example.ics"]

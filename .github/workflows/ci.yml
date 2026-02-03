@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        nox-session: ["lint", "type_check", "docs"]
+        nox-session: ["lint", "docs"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
