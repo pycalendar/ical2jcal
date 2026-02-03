@@ -95,5 +95,6 @@ nav:
   - Command Line Reference:
     - ical2jcal.md
     - jcal2ical.md
-  - Third Party Licenses:
+  - Licensing:
+    - licenses/license.md
     - licenses/license_report.md
