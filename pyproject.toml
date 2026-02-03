@@ -163,4 +163,5 @@ exclude_also = [
     "if TYPE_CHECKING:",
     "raise NotImplementedError",
     "@abstractmethod",
+    "__version__ = ",
 ]

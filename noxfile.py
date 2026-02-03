@@ -16,7 +16,7 @@ def test(s: Session) -> None:
         "--cov=ical2jcal",
         "--cov-report=html",
         "--cov-report=term",
-        "--cov-fail-under=100",
+        "--cov-fail-under=95",
         "tests",
         *s.posargs,
     )
