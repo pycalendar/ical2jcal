@@ -92,9 +92,10 @@ repo_url: https://github.com/niccokunzmann/ical2jcal
 edit_uri: edit/main/docs/user_guide/docs/
 nav:
   - index.md
-  - Command Line Reference:
+  - Command Line:
     - ical2jcal.md
     - jcal2ical.md
+  - compatibility.md
   - Licensing:
     - licenses/license.md
     - licenses/license_report.md
