@@ -34,9 +34,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/niccokunzmann/ical2jcal/"
-Documentation = "https://github.com/niccokunzmann/ical2jcal/"
-Repository = "https://github.com/niccokunzmann/ical2jcal/"
+Homepage = "https://pycalendar.github.io/ical2jcal/"
+Documentation = "https://pycalendar.github.io/ical2jcal/"
+Repository = "https://github.com/pycalendar/ical2jcal/"
 
 [project.scripts]
 ical2jcal = "ical2jcal.cli:ical2jcal"

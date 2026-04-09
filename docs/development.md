@@ -13,7 +13,7 @@ Setup `git`
 2. Clone the repository:
 
     ```bash
-    git clone https://github.com/niccokunzmann/ical2jcal.git
+    git clone https://github.com/pycalendar/ical2jcal.git
     cd ical2jcal
     ```
 

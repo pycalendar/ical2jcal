@@ -76,7 +76,7 @@ def convert_to_jcal(
             ...
         ]
 
-    [Project Website]: https://niccokunzmann.github.io/ical2jcal
+    [Project Website]: https://pycalendar.github.io/ical2jcal
     [RFC 5545]: https://datatracker.ietf.org/doc/html/rfc5545
     [RFC 7265]: https://datatracker.ietf.org/doc/html/rfc7265
     """
@@ -135,10 +135,10 @@ def convert_to_ical(
         $ jcal2ical example.jcal
         BEGIN:VCALENDAR
         VERSION:2.0
-        PRODID:-//niccokunzmann//ical2jcal//EN
+        PRODID:-//pycalendar//ical2jcal//EN
         END:VCALENDAR
 
-    [Project Website]: https://niccokunzmann.github.io/ical2jcal
+    [Project Website]: https://pycalendar.github.io/ical2jcal
     [RFC 5545]: https://datatracker.ietf.org/doc/html/rfc5545
     [RFC 7265]: https://datatracker.ietf.org/doc/html/rfc7265
     """

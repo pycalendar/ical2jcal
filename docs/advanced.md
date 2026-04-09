@@ -17,7 +17,7 @@ In the example below, we convert the example calender from our project website t
 === "curl[^1]"
 
     ```bash
-    curl -sL https://github.com/niccokunzmann/ical2jcal/raw/refs/heads/main/example.ics | ical2jcal --pretty
+    curl -sL https://github.com/pycalendar/ical2jcal/raw/refs/heads/main/example.ics | ical2jcal --pretty
     ```
 
     ```json
@@ -34,7 +34,7 @@ In the example below, we convert the example calender from our project website t
           "prodid",
           {},
           "text",
-          "-//niccokunzmann//ical2jcal//EN"
+          "-//pycalendar//ical2jcal//EN"
         ]
       ],
       []
@@ -44,7 +44,7 @@ In the example below, we convert the example calender from our project website t
 === "wget[^2]"
 
     ```bash
-    $ wget -qO- https://github.com/niccokunzmann/ical2jcal/raw/refs/heads/main/example.ics | ical2jcal --pretty
+    $ wget -qO- https://github.com/pycalendar/ical2jcal/raw/refs/heads/main/example.ics | ical2jcal --pretty
     ```
 
     ```json
@@ -61,7 +61,7 @@ In the example below, we convert the example calender from our project website t
           "prodid",
           {},
           "text",
-          "-//niccokunzmann//ical2jcal//EN"
+          "-//pycalendar//ical2jcal//EN"
         ]
       ],
       []
@@ -82,7 +82,7 @@ $ ical2jcal example.ics | jq '.[1][] | select(.[0] == "prodid") | .[3]'
 Output:
 
 ```json
-"-//niccokunzmann//ical2jcal//EN"
+"-//pycalendar//ical2jcal//EN"
 ```
 
 Here, we use `jq` to get all event summaries.

@@ -11,7 +11,7 @@
       "prodid",
       {},
       "text",
-      "-//niccokunzmann//ical2jcal//EN"
+      "-//pycalendar//ical2jcal//EN"
     ]
   ],
   []
