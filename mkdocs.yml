@@ -102,3 +102,4 @@ nav:
   - Licensing:
     - licenses/license.md
     - licenses/license_report.md
+  - changelog.md
