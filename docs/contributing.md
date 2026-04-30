@@ -9,7 +9,7 @@ Maintainers are:
 
 - [Nicco Kunzmann](https://github.com/niccokunzmann)
 - [Steve Piercy](https://github.com/stevepiercy)
-- [Sashank Bhamidi](github.com/SashankBhamidi)
+- [Sashank Bhamidi](https://github.com/SashankBhamidi)
 
 They can:
 
