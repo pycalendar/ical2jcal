@@ -99,6 +99,7 @@ nav:
   - compatibility.md
   - Contributing:
     - development.md
+    - contributing.md
   - Licensing:
     - licenses/license.md
     - licenses/license_report.md
